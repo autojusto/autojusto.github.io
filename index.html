@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AUTO JUSTO — Estimativa de venda rápida</title>
+
+
+
+
+
+
+
+
+<!-- OVERRIDE CHECKLIST PROFISSIONAL — GERADO -->
+
+
+<style>
+:root {
+  --bg: #0b1020;
+  --panel: #12192b;
+  --panel-2: #182238;
+  --text: #ecf2ff;
+  --muted: #9db0d3;
+  --line: rgba(255,255,255,.08);
+  --accent: #4ade80;
+  --accent-2: #38bdf8;
+  --warn: #f59e0b;
+  --danger: #f87171;
+  --shadow: 0 20px 50px rgba(0,0,0,.35);
+  --radius: 22px;
+}
+* { box-sizing: border-box; }
+html,body { margin:0; padding:0; background: radial-gradient(circle at top, #16203c 0%, #0b1020 55%); color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+body { min-height:100vh; }
+.container { width:min(1180px, 100% - 24px); margin: 0 auto; padding: 18px 0 40px; }
+.hero {
+  background: linear-gradient(135deg, rgba(56,189,248,.12), rgba(74,222,128,.10));
+  border:1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+.hero:before {
+  content:""; position:absolute; inset:auto -60px -60px auto; width:220px; height:220px;
+  background: radial-gradient(circle, rgba(74,222,128,.18), transparent 60%);
+}
+.badge {
+  display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:8px 12px;
+  border:1px solid rgba(255,255,255,.12); border-radius:999px; color:#cfe3ff; background:rgba(255,255,255,.04);
+}
+h1 { margin:12px 0 8px; font-size: clamp(30px, 5vw, 46px); line-height: 1.02; }
+.subtitle { color:#dce7ff; font-size: 17px; max-width: 760px; }
+.hero-grid { display:grid; grid-template-columns: 1.4fr .9fr; gap:18px; align-items:stretch; margin-top:18px; }
+.panel, .side-card {
+  background: rgba(14,20,35,.82); backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.panel { padding: 18px; }
+.side-card { padding:18px; }
+.kpis { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:14px; }
+.kpi { background: rgba(255,255,255,.04); border:1px solid var(--line); border-radius: 18px; padding: 14px; }
+.kpi strong { display:block; font-size:20px; margin-bottom:4px; }
+.progress-wrap { margin: 18px 0 8px; }
+.progress-bar { width:100%; height:10px; background: rgba(255,255,255,.08); border-radius:999px; overflow:hidden; }
+.progress-bar > span { display:block; height:100%; width:16.66%; background: linear-gradient(90deg, var(--accent-2), var(--accent)); transition: width .25s ease; }
+.steps { display:grid; grid-template-columns: repeat(6,1fr); gap:8px; margin-top:12px; }
+.step {
+  padding:10px 10px; border-radius:16px; border:1px solid var(--line);
+  background: rgba(255,255,255,.03); color: var(--muted); font-size: 12px; text-align:center;
+}
+.step.active { color: white; background: rgba(56,189,248,.12); border-color: rgba(56,189,248,.35); }
+.step.done { color:#dfffe8; background: rgba(74,222,128,.10); border-color: rgba(74,222,128,.3); }
+.grid { display:grid; grid-template-columns: repeat(12,1fr); gap:14px; }
+.card {
+  grid-column: span 12;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--line); border-radius:24px; padding:18px;
+}
+.card h2 { margin:0 0 6px; font-size: 20px; }
+.card p.help { margin:0 0 16px; color: var(--muted); font-size:14px; }
+.field { grid-column: span 12; }
+.field.half { grid-column: span 6; }
+.field.third { grid-column: span 4; }
+.field.quarter { grid-column: span 3; }
+label { display:block; font-weight:600; margin:0 0 8px; font-size:14px; }
+input, select, textarea {
+  width:100%; padding:14px 14px; border-radius:16px; border:1px solid rgba(255,255,255,.10);
+  background: #0f1728; color: white; outline:none; transition: .18s ease; font-size:15px;
+}
+textarea { min-height: 96px; resize: vertical; }
+input:focus, select:focus, textarea:focus { border-color: rgba(56,189,248,.55); box-shadow: 0 0 0 4px rgba(56,189,248,.10); }
+input:disabled, select:disabled { opacity:.55; cursor:not-allowed; }
+.row { display:grid; grid-template-columns: repeat(12,1fr); gap:14px; }
+.pill-row { display:flex; flex-wrap:wrap; gap:10px; }
+.pill {
+  display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px;
+  border:1px solid var(--line); background: rgba(255,255,255,.03); color:#d8e5ff; font-size:13px;
+}
+.notice {
+  margin-top:14px; padding:13px 14px; border-radius:16px; border:1px solid rgba(245,158,11,.25);
+  background: rgba(245,158,11,.08); color: #ffe7bb; font-size: 13px;
+}
+.summary-list { display:grid; gap:10px; margin-top:14px; }
+.summary-item {
+  display:flex; justify-content:space-between; gap:12px; padding:12px 14px;
+  background: rgba(255,255,255,.03); border-radius:16px; border:1px solid var(--line);
+}
+.summary-item span:first-child { color: var(--muted); }
+.nav {
+  display:flex; justify-content:space-between; gap:12px; margin-top:16px;
+}
+button {
+  border:none; cursor:pointer; border-radius:16px; padding:14px 18px; font-weight:700; font-size:15px;
+  transition: transform .12s ease, opacity .18s ease, box-shadow .18s ease;
+}
+button:hover { transform: translateY(-1px); }
+button.primary { background: linear-gradient(90deg, var(--accent-2), var(--accent)); color:#06111d; box-shadow: 0 10px 24px rgba(56,189,248,.18); }
+button.secondary { background: rgba(255,255,255,.06); color:white; border:1px solid var(--line); }
+button.ghost { background: transparent; color: var(--muted); }
+.error-box, .success-box {
+  display:none; margin-top:16px; padding:14px; border-radius:16px; font-size:14px;
+}
+.error-box.show { display:block; background: rgba(248,113,113,.08); color: #ffd1d1; border:1px solid rgba(248,113,113,.3); }
+.success-box.show { display:block; background: rgba(74,222,128,.08); color: #dbffe8; border:1px solid rgba(74,222,128,.25); }
+.result-card {
+  margin-top:18px; padding:22px; border-radius: 24px; border:1px solid rgba(74,222,128,.25);
+  background: linear-gradient(135deg, rgba(74,222,128,.12), rgba(56,189,248,.10));
+}
+.result-card h3 { margin:0 0 6px; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:#dcfff0; }
+.result-range { font-size: clamp(30px, 6vw, 48px); font-weight: 900; margin: 10px 0 8px; }
+.result-copy { color:#deefff; max-width: 700px; }
+.whats {
+  display:none; margin-top:16px;
+}
+.whats.show { display:block; }
+.small { font-size:12px; color:var(--muted); }
+.footer-note { margin-top:18px; color: var(--muted); font-size:13px; }
+.sticky {
+  position: sticky; top: 16px;
+}
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .container { width:min(100% - 16px, 1180px); }
+  .panel, .side-card, .hero { border-radius: 22px; }
+  .steps { grid-template-columns: repeat(3,1fr); }
+  .field.half, .field.third, .field.quarter { grid-column: span 12; }
+  .kpis { grid-template-columns:1fr; }
+}
+
+/* --- Override: Opcionais sempre em coluna única --- */
+.pill-row{
+  display:flex !important;
+  flex-direction:column !important;
+  flex-wrap:nowrap !important;
+  gap:12px !important;
+}
+.pill{
+  width:100% !important;
+  max-width:none !important;
+}
+
+</style>
+
+<!-- PATCH: EMPILHAMENTO VERTICAL INTERNO — SEM ALTERAR ESTRUTURA -->
+<style id="autojusto-vertical-stack-patch">
+/* Forçar empilhamento vertical dentro das etapas */
+.step-panel .row{
+  display:block !important;
+}
+
+/* Cada campo ocupa linha inteira */
+.step-panel .field,
+.step-panel .field.half,
+.step-panel .field.third,
+.step-panel .field.quarter{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  grid-column: span 12 !important;
+  margin-bottom:16px !important;
+}
+
+/* Checklist — formato simples à esquerda */
+.pill-row{
+  display:block !important;
+}
+.pill{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  width:100% !important;
+  background:none !important;
+  border:none !important;
+  padding:4px 0 !important;
+  border-radius:0 !important;
+  justify-content:flex-start !important;
+  text-align:left !important;
+}
+
+/* Botão QUERO VENDER centralizado horizontalmente */
+#whatsWrap{
+  text-align:center !important;
+}
+</style>
+
+
+<!-- PATCH: CHECKLIST OPCIONAIS ALINHADO À ESQUERDA — SEM ALTERAR FUNCIONALIDADE -->
+<style id="autojusto-opcionais-left-align">
+/* Container da lista */
+.pill-row{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:10px !important;
+  width:100% !important;
+}
+
+/* Cada item do checklist */
+.pill{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  width:100% !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:none !important;
+  background:none !important;
+  border-radius:0 !important;
+  text-align:left !important;
+}
+
+/* Checkbox fixo à esquerda */
+.pill input[type="checkbox"]{
+  flex:0 0 auto !important;
+  margin:0 !important;
+}
+
+/* Texto ocupa o restante da linha */
+.pill{
+  font-size:14px !important;
+  line-height:1.4 !important;
+}
+</style>
+
+
+<!-- PATCH ULTRA: CHECKLIST OPCIONAIS ESQUERDA ABSOLUTA -->
+<style id="autojusto-opcionais-left-absolute">
+/* Container sempre ancorado à esquerda */
+.pill-row{
+  display:block !important;
+  width:100% !important;
+  text-align:left !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+/* Cada item vira uma linha tipo checklist profissional */
+.pill{
+  display:grid !important;
+  grid-template-columns: 22px 1fr !important;
+  align-items:center !important;
+  justify-content:start !important;
+  width:100% !important;
+
+  margin:0 0 10px 0 !important;
+  padding:0 !important;
+
+  border:none !important;
+  background:none !important;
+  border-radius:0 !important;
+
+  text-align:left !important;
+}
+
+/* Checkbox fixo na extrema esquerda */
+.pill input[type="checkbox"]{
+  margin:0 !important;
+  justify-self:start !important;
+}
+
+/* Texto sempre à esquerda ocupando o resto */
+.pill span,
+.pill{
+  text-align:left !important;
+}
+</style>
+
+</head>
+<body>
+<div class="container">
+  <section class="hero">
+    
+    <h1>AUTO JUSTO</h1>
+    <div class="subtitle">Descubra em poucos passos o valor aproximado do seu veículo para venda rápida.</div>
+    <div class="subtitle" style="font-size:14px; opacity:.9;">Avaliação gratuita baseada no Preço Médio de Mercado e nas condições informadas.</div>
+    <div class="hero-grid">
+      <div class="panel">
+        <div class="progress-wrap">
+          <div class="progress-bar"><span id="progressFill"></span></div>
+          <div class="steps" id="stepIndicators">
+            <div class="step active">1. Veículo</div>
+            <div class="step">2. Estado</div>
+            <div class="step">3. Danos</div>
+            <div class="step">4. Interior</div>
+            <div class="step">5. Histórico</div>
+            <div class="step">6. Resultado</div>
+          </div>
+        </div>
+
+        <form id="appForm">
+          <div class="card step-panel" data-step="0">
+            <h2>Informações do veículo</h2>
+            <p></p>
+            <div class="row">
+              <div class="field third">
+                <label for="marca">Marca *</label>
+                <select id="marca" required></select>
+                
+              </div>
+              <div class="field third">
+                <label for="modelo">Modelo *</label>
+                <select id="modelo" required disabled></select>
+                
+              </div>
+              <div class="field third">
+                <label for="anoFab">Ano de fabricação *</label>
+                <select id="anoFab" required disabled></select>
+                
+              </div>
+              <div class="field third">
+                <label for="anoModelo">Ano modelo *</label>
+                <select id="anoModelo" required disabled></select>
+                
+              </div>
+              <div class="field third">
+                <label for="kmFaixa">Quilometragem *</label>
+                <select id="kmFaixa" required></select>
+                
+              </div>
+              <div class="field third">
+                <label for="cor">Cor *</label>
+                <select id="cor" required></select>
+                
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="card step-panel" data-step="1" style="display:none">
+            <h2>Estado do veículo</h2>
+            <p class="help">Condição mecânica e de rodagem influenciam diretamente o valor final.</p>
+            <div class="row">
+              <div class="field half">
+                <label for="pneus">Estado dos pneus *</label>
+                <select id="pneus" required>
+                  <option value="">Selecione</option>
+                  <option>4 novos</option>
+                  <option>4 meia vida</option>
+                  <option>4 ruins</option>
+                  <option>2 novos + 2 meia vida</option>
+                  <option>2 novos + 2 ruins</option>
+                  <option>2 meia vida + 2 ruins</option>
+                </select>
+                
+              </div>
+              <div class="field half">
+                <label for="estepe">Estepe *</label>
+                <select id="estepe" required>
+                  <option value="">Selecione</option>
+                  <option>Novo</option>
+                  <option>Meia vida</option>
+                  <option>Ruim</option>
+                  <option>Ausente</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="motor">Motor *</label>
+                <select id="motor" required>
+                  <option value="">Selecione</option>
+                  <option>Sem problemas aparentes</option>
+                  <option>Pequenos ruídos</option>
+                  <option>Precisa revisão</option>
+                  <option>Problema sério</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="cambioCond">Câmbio *</label>
+                <select id="cambioCond" required>
+                  <option value="">Selecione</option>
+                  <option>Normal</option>
+                  <option>Trancos</option>
+                  <option>Precisa manutenção</option>
+                  <option>Problema grave</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="suspensao">Suspensão *</label>
+                <select id="suspensao" required>
+                  <option value="">Selecione</option>
+                  <option>Normal</option>
+                  <option>Ruídos leves</option>
+                  <option>Desgaste moderado</option>
+                  <option>Comprometido</option>
+                </select>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="card step-panel" data-step="4" style="display:none">
+            <h2>Histórico e documentação</h2>
+            <p class="help">Histórico do veículo e situação documental influenciam diretamente a análise comercial.</p>
+            <div class="row">
+              <div class="field half">
+                <label for="sinistro">Sinistro *</label>
+                <select id="sinistro" required>
+                  <option value="">Selecione</option>
+                  <option>Nunca sofreu</option>
+                  <option>Reparado</option>
+                  <option>Estrutural reparado</option>
+                  <option>A reparar</option>
+                </select>
+                
+              </div>
+              <div class="field half">
+                <label for="leilao">Leilão *</label>
+                <select id="leilao" required>
+                  <option value="">Selecione</option>
+                  <option>Não</option>
+                  <option>Sim</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="situacaoDoc">Situação financeira *</label>
+                <select id="situacaoDoc" required>
+                  <option value="">Selecione</option>
+                  <option>Quitado</option>
+                  <option>Financiado / Alienado</option>
+                </select>
+
+<div id="parcelasInfoWrap" style="display:none; margin-top:12px;">
+  <label for="parcelasInfo"><strong>Parcelas do financiamento</strong></label>
+  <input id="parcelasInfo" type="text" placeholder="Ex.: 24x de R$ 1.200,00" style="width:100%; padding:10px; margin-top:6px;">
+</div>
+
+                
+              </div>
+              <div class="field third">
+                <label for="ipva">IPVA *</label>
+                <select id="ipva" required>
+                  <option value="">Selecione</option>
+                  <option>Pago</option>
+                  <option>Parcial</option>
+                  <option>Em aberto</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="licenciamento">Licenciamento *</label>
+                <select id="licenciamento" required>
+                  <option value="">Selecione</option>
+                  <option>Pago</option>
+                  <option>Em aberto</option>
+                </select>
+                
+              </div>
+              <div class="field">
+                <label for="multas">Multas</label>
+                <input id="multas" type="text" inputmode="numeric" placeholder="Ex.: 1.000,00" oninput="formatarMoeda(this)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="card step-panel" data-step="2" style="display:none">
+            <h2>Danos na carroceria e componentes externos</h2>
+            <p class="help">Informe quantas peças externas apresentam danos visíveis ou necessidade de reparo. Conte cada peça separadamente (ex.: porta, para-choque, capô, teto, tampa traseira etc.).</p>
+            <div class="row">
+              <div class="field quarter"><label for="leves">Danos leves (reparo simples)</label><div class="small">Arranhões superficiais, pequenos amassados ou danos apenas na pintura.</div><input id="leves" type="number" min="0" max="20" value="0"/></div>
+              <div class="field quarter"><label for="profundos">Danos graves (reparo complexo ou possível substituição)</label><div class="small">Amassados profundos, deformações, trincas ou peças que possam exigir troca.</div><input id="profundos" type="number" min="0" max="20" value="0"/></div>
+              <div class="field quarter"><label for="farois">Faróis ou lanternas danificados</label><div class="small">Quebrados, trincados, opacos ou ausentes.</div><input id="farois" type="number" min="0" max="10" value="0"/></div>
+              <div class="field quarter"><label for="retrovisores">Retrovisores danificados ou faltantes</label><div class="small">Quebrados, trincados ou sem capa.</div><input id="retrovisores" type="number" min="0" max="4" value="0"/></div>
+              <div class="field quarter"><label for="vidros">Vidros danificados ou trincados</label><div class="small">Parabrisa, laterais ou traseiro com trinca ou quebra.</div><input id="vidros" type="number" min="0" max="6" value="0"/></div>
+              <div class="field third">
+                
+              </div>
+              <div class="field third">
+                
+              </div>
+              <div class="field third">
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="card step-panel" data-step="3" style="display:none">
+            <h2>Interior</h2>
+            <p class="help">Classifique o estado geral do interior. Considere rasgos, desgaste excessivo, manchas ou danos visíveis.</p>
+            <div class="row">
+              <div class="field third">
+                <label for="painel">Painel/volante *</label>
+                <select id="painel" required>
+                  <option value="">Selecione</option>
+                  <option>Excelente</option>
+                  <option>Bom</option>
+                  <option>Ruim</option>
+                  <option>Crítico</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="teto">Teto e assoalho *</label>
+                <select id="teto" required>
+                  <option value="">Selecione</option>
+                  <option>Excelente</option>
+                  <option>Bom</option>
+                  <option>Ruim</option>
+                  <option>Crítico</option>
+                </select>
+                
+              </div>
+              <div class="field third">
+                <label for="bancos">Bancos *</label>
+                <select id="bancos" required>
+                  <option value="">Selecione</option>
+                  <option>Excelente</option>
+                  <option>Bom</option>
+                  <option>Ruim</option>
+                  <option>Crítico</option>
+                </select>
+                
+              </div>
+            
+              <div class="field third">
+                <label for="arCond">Estado do ar-condicionado *</label>
+                <select id="arCond" required>
+                  <option value="">Selecione</option>
+                  <option>Sem ar-condicionado</option>
+                  <option>Funcionando perfeitamente</option>
+                  <option>Fraco / precisa carga</option>
+                  <option>Não gela</option>
+                  <option>Não funciona</option>
+                  <option>Sistema comprometido</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card step-panel" data-step="5" style="display:none">
+            <h2>Resultado preliminar</h2>
+            <p class="help">A estimativa é conservadora, destinada à venda rápida, e pode variar após vistoria presencial.</p>
+            <div class="summary-list" id="summaryList"></div>
+            <div id="errorBox" class="error-box"></div>
+            <div id="successBox" class="success-box"></div>
+            <div id="resultCard" class="result-card" style="display:none;">
+              <h3>Valor estimado para venda rápida</h3>
+              <div class="result-range" id="resultRange">—</div>
+<div class="result-copy">Se esta faixa estiver dentro ou próxima do seu interesse, preencha os dados abaixo e clique no botão QUERO VENDER. Você será direcionado via WhatsApp para falar diretamente com um especialista que poderá localizar compradores interessados no seu veículo.</div>
+<div id="localizacaoFinal" style="display:none;">
+<div class="small">Informações opcionais para facilitar a localização de compradores próximos.</div>
+<label for="estado">Estado</label>
+                <input id="estado" placeholder="Ex.: SP"/>
+<label for="cidade">Cidade</label>
+                <input id="cidade" placeholder="Ex.: Praia Grande"/>
+<label for="bairro">Bairro</label>
+                <input id="bairro" placeholder="Ex.: Canto do Forte"/>
+</div>
+
+<div id="objetivoVendaWrap" style="display:none; margin-top:16px;">
+  <label for="objetivoVenda">Qual é o seu objetivo com a venda do veículo? *</label>
+  <select id="objetivoVenda" required>
+    <option value="">Selecione</option>
+    <option>Trocar por outro veículo</option>
+    <option>Apenas venda (outros motivos)</option>
+  </select>
+</div>
+
+<div id="veiculoProcuraWrap" style="display:none; margin-top:16px;">
+  <label for="veiculoProcura">Descreva qual veículo você procura</label>
+  <textarea id="veiculoProcura" placeholder="Ex.: Honda Civic LXS 1.8 manual / automático"></textarea>
+</div>
+
+              
+<div style="margin-top:18px;">
+  <h3>Opcionais (informativo)</h3>
+  <div class="pill-row">
+    <label class="pill"><input type="checkbox"> Bancos de couro</label>
+    <label class="pill"><input type="checkbox"> Multimídia</label>
+    <label class="pill"><input type="checkbox"> Câmera de ré</label>
+    <label class="pill"><input type="checkbox"> Sensor de estacionamento</label>
+    <label class="pill"><input type="checkbox"> Ar-condicionado digital</label>
+    <label class="pill"><input type="checkbox"> Chave presencial (keyless)</label>
+    <label class="pill"><input type="checkbox"> Piloto automático</label>
+    <label class="pill"><input type="checkbox"> Controle de estabilidade</label>
+    <label class="pill"><input type="checkbox"> Controle de tração</label>
+    <label class="pill"><input type="checkbox"> Rodas de liga leve</label>
+    <label class="pill"><input type="checkbox"> Faróis de LED</label>
+    <label class="pill"><input type="checkbox"> Faróis de xenônio</label>
+    <label class="pill"><input type="checkbox"> Teto solar</label>
+    <label class="pill"><input type="checkbox"> Teto panorâmico</label>
+    <label class="pill"><input type="checkbox"> Partida por botão</label>
+    <label class="pill"><input type="checkbox"> Carregador por indução</label>
+    <label class="pill"><input type="checkbox"> Painel digital</label>
+    <label class="pill"><input type="checkbox"> Computador de bordo avançado</label>
+    <label class="pill"><input type="checkbox"> Rebatimento elétrico dos retrovisores</label>
+    <label class="pill"><input type="checkbox"> Banco elétrico</label>
+    <label class="pill"><input type="checkbox"> Banco com aquecimento</label>
+    <label class="pill"><input type="checkbox"> 7 lugares</label>
+    <label class="pill"><input type="checkbox"> 4x4 / AWD</label>
+  </div>
+</div>
+
+<div style="margin-top:10px; color:#deefff;">Clique no botão abaixo para iniciar o contato via WhatsApp.</div>
+              <div class="whats" id="whatsWrap">
+                <button type="button" id="whatsBtn" class="primary">QUERO VENDER</button>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="nav">
+            <button type="button" class="secondary" id="prevBtn">Voltar</button>
+            <div style="display:flex; gap:10px;">
+              <button type="button" class="ghost" id="resetBtn">Limpar</button>
+              <button type="button" class="primary" id="nextBtn">Continuar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      
+    </div>
+  </section>
+</div>
+
+<script>
+const COLORS = ["Amarelo", "Areia", "Azul", "Azul Claro", "Azul Escuro", "Azul Marinho", "Bege", "Bordô", "Branco", "Branco Fosco", "Branco Pérola / Perolizado", "Bronze", "Champagne", "Cinza", "Cinza Claro", "Cinza Escuro", "Cinza Grafite", "Cinza Metálico", "Cinza Prata", "Cobre", "Dourado", "Grafite", "Laranja", "Marrom", "Marrom Escuro", "Ouro", "Perolizado", "Preto", "Preto Fosco", "Preto Metálico", "Prata", "Prata Metálico", "Roxo", "Turquesa", "Verde", "Verde Escuro", "Verde Militar", "Verde Metálico", "Vermelho", "Vermelho Escuro", "Vermelho Metálico", "Vinho"];
+const KM_RANGES = ["0.000–10.000 km", "10.000–20.000 km", "20.000–30.000 km", "30.000–40.000 km", "40.000–50.000 km", "50.000–60.000 km", "60.000–70.000 km", "70.000–80.000 km", "80.000–90.000 km", "90.000–100.000 km", "100.000–110.000 km", "110.000–120.000 km", "120.000–130.000 km", "130.000–140.000 km", "140.000–150.000 km", "150.000–160.000 km", "160.000–170.000 km", "170.000–180.000 km", "180.000–190.000 km", "190.000–200.000 km", "Acima de 200.000 km"];
+const CURRENT_YEAR = new Date().getFullYear();
+const WHATS_NUMBER = "5511958377876";
+const FIPE_BASE_URL = "https://parallelum.com.br/fipe/api/v1/carros";
+const FIPE_TIMEOUT_MS = 15000;
+
+const $ = id => document.getElementById(id);
+const fmtBRL = v => new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL', maximumFractionDigits:0 }).format(v);
+const unique = arr => [...new Set(arr)].sort((a,b) => String(a).localeCompare(String(b), 'pt-BR', {numeric:true}));
+const safeVal = el => (el?.value || "").trim();
+const fieldsByStep = [
+  ['marca','modelo','anoFab','anoModelo','kmFaixa','cor'],
+  ['pneus','estepe','motor','cambioCond','suspensao'],
+  [],
+  ['painel','teto','bancos'],
+  ['sinistro','leilao','situacaoDoc','ipva','licenciamento'],
+  []
+];
+
+const fipeState = {
+  brands: [],
+  brandByName: new Map(),
+  modelsByBrandCode: new Map(),
+  yearsByModelKey: new Map(),
+  detailsByYearKey: new Map(),
+  selectedBrand: null,
+  selectedModel: null,
+  selectedYear: null,
+  selectedDetail: null
+};
+
+let currentStep = 0;
+let lastEstimate = null;
+
+function setOptions(select, items, placeholder='Selecione') {
+  const previous = select.value;
+  const cleaned = uniqueNormalized(items);
+  select.innerHTML = `<option value="">${placeholder}</option>` + cleaned.map(item => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join('');
+  if (cleaned.includes(previous)) select.value = previous;
+}
+
+function normalizeText(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function uniqueNormalized(items) {
+  const map = new Map();
+  for (const rawItem of Array.isArray(items) ? items : []) {
+    const item = String(rawItem ?? '').trim();
+    if (!item) continue;
+    const key = normalizeText(item);
+    if (!key || map.has(key)) continue;
+    map.set(key, item);
+  }
+  return Array.from(map.values());
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function parseFipeCurrencyToNumber(value) {
+  if (!value) return null;
+  const n = Number(String(value).replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'));
+  return Number.isFinite(n) ? n : null;
+}
+
+function getApiName(item) {
+  return item?.nome ?? item?.name ?? item?.label ?? '';
+}
+
+function getApiCode(item) {
+  return String(item?.codigo ?? item?.code ?? item?.value ?? '');
+}
+
+function inferCambioOptions(text) {
+  const value = normalizeText(text);
+  if (!value) return ['Manual', 'Automático'];
+  if (/(aut|automatic|tiptronic|cvt|dsg|powershift|stronic|steptronic|tronic|at\b)/.test(value)) return ['Automático'];
+  if (/(mec|manual|mt\b)/.test(value)) return ['Manual'];
+  return ['Manual', 'Automático'];
+}
+
+async function fetchJsonWithTimeout(url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FIPE_TIMEOUT_MS);
+  try {
+    const response = await fetch(url, { signal: controller.signal, cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function apiFetch(path) {
+  const directUrl = `${FIPE_BASE_URL}${path}`;
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(directUrl)}`;
+  const attempts = [
+    () => fetchJsonWithTimeout(directUrl),
+    () => fetchJsonWithTimeout(proxyUrl)
+  ];
+
+  let lastError = null;
+  for (const attempt of attempts) {
+    try {
+      return await attempt();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error('Falha ao consultar a FIPE.');
+}
+
+const MARCAS_PRIORITARIAS = [
+  "chevrolet","volkswagen","fiat","toyota","honda","hyundai",
+  "ford","jeep","renault","nissan","peugeot","citroen",
+  "mitsubishi","kia","chery","byd","ram","suzuki",
+  "land rover","bmw","mercedes-benz","audi","volvo",
+  "porsche","mini"
+];
+
+async function loadBrands() {
+  if (fipeState.brands.length) return fipeState.brands;
+
+  const payload = await apiFetch('/marcas');
+  const brands = Array.isArray(payload) ? payload : [];
+
+  const dedupedBrands = [];
+  const seenBrands = new Set();
+
+  for (const item of brands) {
+    const brand = {
+      codigo: getApiCode(item),
+      nome: getApiName(item)
+    };
+
+    const key = normalizeText(brand.nome);
+
+    // Filtro por correspondência semântica (contém)
+    const isAllowed = MARCAS_PRIORITARIAS.some(m => key.includes(m));
+    if (!isAllowed) continue;
+
+    if (!brand.codigo || !brand.nome || !key || seenBrands.has(key)) continue;
+
+    seenBrands.add(key);
+    dedupedBrands.push(brand);
+  }
+
+  fipeState.brands = dedupedBrands;
+
+  fipeState.brandByName = new Map();
+  for (const brand of fipeState.brands) {
+    fipeState.brandByName.set(normalizeText(brand.nome), brand);
+  }
+
+  return fipeState.brands;
+}
+
+async function loadModelsByBrand(brandCode) {
+  if (fipeState.modelsByBrandCode.has(brandCode)) return fipeState.modelsByBrandCode.get(brandCode);
+
+  const payload = await apiFetch(`/marcas/${brandCode}/modelos`);
+  const rawModels = Array.isArray(payload?.modelos) ? payload.modelos : (Array.isArray(payload) ? payload : []);
+  const models = [];
+  const seenModels = new Set();
+  for (const item of rawModels) {
+    const model = { codigo: getApiCode(item), nome: getApiName(item) };
+    const key = `${model.codigo}:${normalizeText(model.nome)}`;
+    if (!model.codigo || !model.nome || !normalizeText(model.nome) || seenModels.has(key)) continue;
+    seenModels.add(key);
+    models.push(model);
+  }
+
+  fipeState.modelsByBrandCode.set(brandCode, models);
+  return models;
+}
+
+async function loadYearsByModel(brandCode, modelCode) {
+  const key = `${brandCode}:${modelCode}`;
+  if (fipeState.yearsByModelKey.has(key)) return fipeState.yearsByModelKey.get(key);
+
+  const payload = await apiFetch(`/marcas/${brandCode}/modelos/${modelCode}/anos`);
+  const years = [];
+  const seenYears = new Set();
+  for (const item of (Array.isArray(payload) ? payload : [])) {
+    const year = {
+      codigo: getApiCode(item),
+      nome: getApiName(item),
+      ano: String(getApiName(item)).slice(0, 4),
+      combustivel: String(getApiName(item)).replace(/^\d{4}\s*/, '').trim()
+    };
+    const keyYear = `${year.codigo}:${year.ano}:${normalizeText(year.combustivel)}`;
+    if (!year.codigo || !year.nome || !/^\d{4}$/.test(year.ano) || seenYears.has(keyYear)) continue;
+    seenYears.add(keyYear);
+    years.push(year);
+  }
+
+  fipeState.yearsByModelKey.set(key, years);
+  return years;
+}
+
+async function loadDetail(brandCode, modelCode, yearCode) {
+  const key = `${brandCode}:${modelCode}:${yearCode}`;
+  if (fipeState.detailsByYearKey.has(key)) return fipeState.detailsByYearKey.get(key);
+
+  const payload = await apiFetch(`/marcas/${brandCode}/modelos/${modelCode}/anos/${yearCode}`);
+  fipeState.detailsByYearKey.set(key, payload);
+  return payload;
+}
+
+function clearAfter(fieldId) {
+  const order = ['marca','modelo','anoFab','anoModelo'];
+  const index = order.indexOf(fieldId);
+  if (index < 0) return;
+
+  for (let i = index + 1; i < order.length; i++) {
+    const id = order[i];
+    $(id).disabled = true;
+    setOptions($(id), []);
+  }
+
+  if (fieldId === 'marca') {
+    fipeState.selectedBrand = null;
+    fipeState.selectedModel = null;
+    fipeState.selectedYear = null;
+    fipeState.selectedDetail = null;
+  }
+  if (fieldId === 'modelo') {
+    fipeState.selectedModel = null;
+    fipeState.selectedYear = null;
+    fipeState.selectedDetail = null;
+  }
+  if (fieldId === 'anoFab' || fieldId === 'anoModelo') {
+    fipeState.selectedYear = null;
+    fipeState.selectedDetail = null;
+  }
+}
+
+function getSelectedBrand() {
+  return fipeState.brandByName.get(normalizeText(safeVal($('marca')))) || null;
+}
+
+async function refreshDependentFields(changed) {
+  clearMessages();
+
+  try {
+    if (changed === 'marca') {
+      clearAfter('marca');
+      const brand = getSelectedBrand();
+      fipeState.selectedBrand = brand;
+      if (!brand) return;
+
+      const models = await loadModelsByBrand(brand.codigo);
+      $('modelo').disabled = false;
+      setOptions($('modelo'), uniqueNormalized(models.map(x => x.nome)));
+      return;
+    }
+
+    if (changed === 'modelo') {
+      clearAfter('modelo');
+      const brand = getSelectedBrand();
+      const modelName = safeVal($('modelo'));
+      if (!brand || !modelName) return;
+
+      const models = await loadModelsByBrand(brand.codigo);
+      const selectedModel = models.find(item => item.nome === modelName) || null;
+      fipeState.selectedBrand = brand;
+      fipeState.selectedModel = selectedModel;
+      if (!selectedModel) return;
+
+      const years = await loadYearsByModel(brand.codigo, selectedModel.codigo);
+      const uniqueYears = uniqueNormalized(years.map(item => item.ano));
+      $('anoFab').disabled = false;
+      setOptions($('anoFab'), uniqueYears);
+      return;
+    }
+
+
+    if (changed === 'anoFab') {
+      clearAfter('anoFab');
+      const anoFab = safeVal($('anoFab'));
+      if (!anoFab) return;
+
+      $('anoModelo').disabled = false;
+      setOptions($('anoModelo'), [anoFab]);
+      return;
+    }
+
+    if (changed === 'anoModelo') {
+      clearAfter('anoModelo');
+      const brand = getSelectedBrand();
+      const selectedModel = fipeState.selectedModel;
+      const anoModelo = safeVal($('anoModelo'));
+      if (!brand || !selectedModel || !anoModelo) return;
+
+      const years = await loadYearsByModel(brand.codigo, selectedModel.codigo);
+      const matchingYears = years.filter(item => item.ano === anoModelo);
+      if (!matchingYears.length) return;
+
+      // fluxo simplificado: sem câmbio/combustível
+      return;
+    }
+
+  } catch (error) {
+    console.error('Erro ao atualizar campos dependentes', error);
+    showError('Não foi possível carregar os dados da FIPE agora. Verifique sua internet e tente novamente.');
+  }
+}
+
+function wireEvents() {
+  ['marca','modelo','anoFab','anoModelo'].forEach(id => {
+    $(id).addEventListener('change', async () => {
+      await refreshDependentFields(id);
+    });
+  });
+  $('nextBtn').addEventListener('click', async () => { await nextStep(); });
+  $('prevBtn').addEventListener('click', prevStep);
+  $('resetBtn').addEventListener('click', resetAll);
+  $('whatsBtn').addEventListener('click', openWhatsApp);
+}
+
+async function obterFipeReal(marca, modelo, ano) {
+  try {
+    await loadBrands();
+    const brand = fipeState.brandByName.get(normalizeText(marca));
+    if (!brand) return null;
+
+    const models = await loadModelsByBrand(brand.codigo);
+    const normalizedModelo = normalizeText(modelo);
+    const selectedModel = models.find(item => normalizeText(item.nome) === normalizedModelo)
+      || models.find(item => normalizeText(item.nome).includes(normalizedModelo))
+      || models.find(item => normalizedModelo.includes(normalizeText(item.nome)));
+
+    if (!selectedModel) return null;
+
+    const years = await loadYearsByModel(brand.codigo, selectedModel.codigo);
+    const selectedYear = years.find(item => item.ano === String(ano));
+    if (!selectedYear) return null;
+
+    const detail = await loadDetail(brand.codigo, selectedModel.codigo, selectedYear.codigo);
+    const value = parseFipeCurrencyToNumber(detail?.Valor || detail?.valor);
+    if (!Number.isFinite(value)) return null;
+
+    fipeState.selectedBrand = brand;
+    fipeState.selectedModel = selectedModel;
+    fipeState.selectedYear = selectedYear;
+    fipeState.selectedDetail = detail;
+
+    return value;
+  } catch (error) {
+    console.error('Erro ao obter FIPE real', error);
+    return null;
+  }
+}
+
+async function resolveSelectedVehicle() {
+  const marca = safeVal($('marca'));
+  const modelo = safeVal($('modelo'));
+  const anoModelo = safeVal($('anoModelo'));
+
+  if (!marca || !modelo || !anoModelo) return null;
+
+  const basePrice = await obterFipeReal(marca, modelo, anoModelo);
+  if (!Number.isFinite(basePrice)) return null;
+
+  const detail = fipeState.selectedDetail || {};
+  return {
+    marca,
+    modelo,
+    anoFabricacao: Number(safeVal($('anoFab')) || anoModelo),
+    anoModelo: Number(anoModelo),
+    precoMedio: basePrice,
+    codigoFipe: detail?.CodigoFipe || detail?.codigoFipe || '',
+    referencia: detail?.MesReferencia || detail?.mesReferencia || '',
+    detalheFipe: detail
+  };
+}
+
+async function findVehicle() {
+  return await resolveSelectedVehicle();
+}
+
+async function buildSummary() {
+  let vehicle = null;
+  if (safeVal($('marca')) && safeVal($('modelo')) && safeVal($('anoModelo'))) {
+    vehicle = await resolveSelectedVehicle();
+  }
+
+  const summary = [
+    ['Veículo', [safeVal($('marca')), safeVal($('modelo'))].filter(Boolean).join(' • ') || '—'],
+    ['Ano', [safeVal($('anoFab')), safeVal($('anoModelo'))].filter(Boolean).join('/') || '—'],
+    ['Quilometragem / Cor', [safeVal($('kmFaixa')), safeVal($('cor'))].filter(Boolean).join(' • ') || '—'],
+    ['Preço Médio Praticado', vehicle ? fmtBRL(vehicle.precoMedio) : 'FIPE não localizada']
+  ];
+  $('summaryList').innerHTML = summary.map(([k,v]) => `<div class="summary-item"><span>${k}</span><strong>${v}</strong></div>`).join('');
+}
+
+async function validateCurrentStep() {
+  clearMessages();
+  const ids = fieldsByStep[currentStep];
+  const missing = ids.filter(id => !safeVal($(id)));
+  if (missing.length) {
+    showError('Preencha todos os campos obrigatórios desta etapa antes de continuar.');
+    return false;
+  }
+  if (currentStep === 0) {
+    const anoFab = Number(safeVal($('anoFab')));
+    const anoModelo = Number(safeVal($('anoModelo')));
+    if (anoFab > CURRENT_YEAR) {
+      showError('Ano de fabricação não pode ser maior que o ano atual.');
+      return false;
+    }
+    if (!(anoModelo === anoFab || anoModelo === anoFab + 1)) {
+      showError('Ano modelo deve ser igual ao ano de fabricação ou ano de fabricação + 1.');
+      return false;
+    }
+    const vehicle = await resolveSelectedVehicle();
+    if (!vehicle) {
+      showError('Veículo não encontrado na FIPE no momento. Verifique os dados informados ou tente novamente.');
+      return false;
+    }
+  }
+  return true;
+}
+
+function updateStepUI() {
+  document.querySelectorAll('.step-panel').forEach(panel => {
+    panel.style.display = Number(panel.dataset.step) === currentStep ? 'block' : 'none';
+  });
+  const fill = ((currentStep+1)/6)*100;
+  $('progressFill').style.width = fill + '%';
+  document.querySelectorAll('#stepIndicators .step').forEach((el, idx) => {
+    el.classList.toggle('active', idx === currentStep);
+    el.classList.toggle('done', idx < currentStep);
+  });
+  $('prevBtn').style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+  $('nextBtn').textContent = currentStep === 5 ? 'Calcular estimativa' : 'Continuar';
+  if (currentStep === 5) {
+    buildSummary().catch(error => {
+      console.error('Erro ao montar resumo', error);
+      $('summaryList').innerHTML = '';
+    });
+  }
+}
+
+async function nextStep() {
+  if (currentStep < 5) {
+    if (!await validateCurrentStep()) return;
+    currentStep++;
+    updateStepUI();
+    return;
+  }
+  await calculate();
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    updateStepUI();
+  }
+}
+
+async function resetAll() {
+  $('appForm').reset();
+  currentStep = 0;
+  ['modelo','anoFab','anoModelo'].forEach(id => {
+    $(id).disabled = true;
+    setOptions($(id), []);
+  });
+  fipeState.selectedBrand = null;
+  fipeState.selectedModel = null;
+  fipeState.selectedYear = null;
+  fipeState.selectedDetail = null;
+  await loadBrands();
+  setOptions($('marca'), uniqueNormalized(fipeState.brands.map(x => x.nome)));
+  setOptions($('kmFaixa'), KM_RANGES);
+  setOptions($('cor'), COLORS);
+  $('resultCard').style.display = 'none';
+  $('whatsWrap').classList.remove('show');
+  lastEstimate = null;
+  clearMessages();
+  updateStepUI();
+}
+
+function showError(msg) {
+  $('errorBox').textContent = msg;
+  $('errorBox').classList.add('show');
+}
+
+function showSuccess(msg) {
+  $('successBox').textContent = msg;
+  $('successBox').classList.add('show');
+}
+
+function clearMessages() {
+  $('errorBox').classList.remove('show');
+  $('successBox').classList.remove('show');
+}
+
+function kmRepresentative(range) {
+  if (!range) return 0;
+  if (range.includes('Acima')) return 250000;
+  const m = range.match(/(\d+)\.000–(\d+)\.000/);
+  if (!m) return 0;
+  const start = Number(m[1])*1000;
+  const end = Number(m[2])*1000;
+  return Math.round((start+end)/2);
+}
+
+async function calculate() {
+  clearMessages();
+  if (!await validateAllRequired()) return;
+
+  const vehicle = await findVehicle();
+  if (!vehicle) {
+    showError('Não foi possível localizar o preço FIPE deste veículo agora. Verifique marca, modelo e ano ou tente novamente.');
+    $('resultCard').style.display = 'none';
+    return;
+  }
+
+  const basePrice = Number(vehicle.precoMedio);
+  if (!Number.isFinite(basePrice) || basePrice <= 0) {
+    showError('A consulta FIPE retornou um valor inválido para este veículo. Revise os dados e tente novamente.');
+    $('resultCard').style.display = 'none';
+    return;
+  }
+
+  const age = Math.max(0, CURRENT_YEAR - Number(safeVal($('anoFab'))));
+  const km = kmRepresentative(safeVal($('kmFaixa')));
+  const theoreticalKm = age * 15000;
+  const excess = Math.max(0, km - theoreticalKm);
+  const kmPct = Math.min(0.15, Math.floor(excess / 10000) * 0.01);
+
+  const tiresFixedMap = {
+    '4 novos': 0,
+    '4 meia vida': 1000,
+    '4 ruins': 2000,
+    '2 novos + 2 meia vida': 500,
+    '2 novos + 2 ruins': 1000,
+    '2 meia vida + 2 ruins': 1500
+  };
+  const spareMap = { 'Novo':0, 'Meia vida':250, 'Ruim':500, 'Ausente':700 };
+  const motorPct = { 'Sem problemas aparentes':0, 'Pequenos ruídos':0.03, 'Precisa revisão':0.06, 'Problema sério':0.12 };
+  const cambioPct = { 'Normal':0, 'Trancos':0.01, 'Precisa manutenção':0.02, 'Problema grave':0.05 };
+  const suspPct = { 'Normal':0, 'Ruídos leves':0.03, 'Desgaste moderado':0.06, 'Comprometido':0.10 };
+  const sinistroPct = { 'Nunca sofreu':0, 'Reparado':0.10, 'Estrutural reparado':0.10, 'A reparar':0.20 };
+  const leilaoPct = { 'Não':0, 'Sim':0.10 };
+  const interiorPctMap = {
+    painel: { 'Excelente':0, 'Bom':0, 'Ruim':0.02, 'Crítico':0.04 },
+    teto: { 'Excelente':0, 'Bom':0, 'Ruim':0.015, 'Crítico':0.03 },
+    bancos: { 'Excelente':0, 'Bom':0, 'Ruim':0.02, 'Crítico':0.04 }
+  };
+
+  const fixedTires = tiresFixedMap[safeVal($('pneus'))] || 0;
+  const fixedSpare = spareMap[safeVal($('estepe'))] || 0;
+  const mechanicalPct =
+    (motorPct[safeVal($('motor'))] || 0) +
+    (cambioPct[safeVal($('cambioCond'))] || 0) +
+    (suspPct[safeVal($('suspensao'))] || 0);
+
+  const historyPct = (sinistroPct[safeVal($('sinistro'))] || 0) + (leilaoPct[safeVal($('leilao'))] || 0);
+  const externalFixed =
+    Number($('leves').value || 0) * 300 +
+    Number($('profundos').value || 0) * 500 +
+    Number($('farois').value || 0) * 300 +
+    Number($('retrovisores').value || 0) * 250 +
+    Number($('vidros').value || 0) * 700;
+
+  
+  const arMap = {
+    'Sem ar-condicionado': 0,
+    'Funcionando perfeitamente': 0,
+    'Fraco / precisa carga': 300,
+    'Não gela': 800,
+    'Não funciona': 2000,
+    'Sistema comprometido': 3500
+  };
+  const fixedAr = arMap[safeVal($('arCond'))] || 0;
+
+  const interiorPct =
+    (interiorPctMap.painel[safeVal($('painel'))] || 0) +
+    (interiorPctMap.teto[safeVal($('teto'))] || 0) +
+    (interiorPctMap.bancos[safeVal($('bancos'))] || 0);
+
+  let value = basePrice;
+  value *= (1 - 0.15);
+  value *= (1 - kmPct);
+  value -= (fixedTires + fixedSpare);
+  value *= (1 - mechanicalPct);
+  value *= (1 - historyPct);
+
+  const ipvaStatus = safeVal($('ipva'));
+  let ipvaPct = 0;
+  if (ipvaStatus === 'Parcial') ipvaPct = 0.02;
+  else if (ipvaStatus === 'Em aberto') ipvaPct = 0.04;
+  value -= basePrice * ipvaPct;
+
+  const licStatus = safeVal($('licenciamento'));
+  if (licStatus === 'Em aberto') {
+    value -= 180.0;
+  }
+
+  value -= (externalFixed + fixedAr);
+  value *= (1 - interiorPct);
+
+  value = Math.max(0, Math.round(value));
+  const minRange = Math.max(0, Math.round(value * 0.95));
+  const maxRange = Math.max(0, Math.round(value * 1.05));
+  lastEstimate = { basePrice, value, minRange, maxRange };
+
+  $('resultCard').style.display = 'block';
+  const multasValor = parseFloat(
+    (document.getElementById('multas')?.value || '')
+      .replace(/\./g, '')
+      .replace(',', '.')
+  ) || 0;
+
+  const minFinal = Math.max(0, minRange - multasValor);
+  const maxFinal = Math.max(0, maxRange - multasValor);
+
+  $('resultRange').textContent = `${fmtBRL(minFinal)} — ${fmtBRL(maxFinal)}`;
+
+  $('whatsWrap').classList.add('show');
+  showSuccess('Estimativa gerada com sucesso. Se desejar, você pode solicitar ajuda para encontrar compradores interessados.');
+}
+
+async function validateAllRequired() {
+  const allReq = ['marca','modelo','anoFab','anoModelo','kmFaixa','cor','pneus','estepe','motor','cambioCond','suspensao','sinistro','leilao','situacaoDoc','ipva','licenciamento','painel','teto','bancos'];
+  const missing = allReq.filter(id => !safeVal($(id)));
+  if (missing.length) {
+    showError('Há campos obrigatórios ainda não preenchidos. Revise as etapas anteriores.');
+    currentStep = 0;
+    updateStepUI();
+    return false;
+  }
+  ['leves','profundos','farois','retrovisores','vidros'].forEach(id => {
+    const input = $(id);
+    const n = Number(input.value || 0);
+    if (!Number.isInteger(n) || n < 0) input.value = 0;
+  });
+
+  const vehicle = await resolveSelectedVehicle();
+  if (!vehicle) {
+    showError('Não foi possível localizar este veículo na FIPE agora. Verifique os dados e tente novamente.');
+    currentStep = 0;
+    updateStepUI();
+    return false;
+  }
+
+  return true;
+}
+
+function openWhatsApp() {
+  const lines = [
+    'Olá, tudo bem? Vim através do site AUTO JUSTO e tenho interesse em conseguir um comprador para meu veículo pela faixa de preço informada. Também estou ciente que pode haver alterações após análise mais detalhada e presencial.',
+    '',
+    'Segue dados do veículo:',
+    `Marca: ${safeVal($('marca'))}`,
+    `Modelo: ${safeVal($('modelo'))}`,
+    `Ano fabricação: ${safeVal($('anoFab'))}`,
+    `Ano modelo: ${safeVal($('anoModelo'))}`,
+    `Quilometragem: ${safeVal($('kmFaixa'))}`,
+    `Cor: ${safeVal($('cor'))}`,
+    `Pneus: ${safeVal($('pneus'))}`,
+    `Estepe: ${safeVal($('estepe'))}`,
+    `Motor: ${safeVal($('motor'))}`,
+    `Condição do câmbio: ${safeVal($('cambioCond'))}`,
+    `Suspensão: ${safeVal($('suspensao'))}`,
+    `Sinistro: ${safeVal($('sinistro'))}`,
+    `Leilão: ${safeVal($('leilao'))}`,
+    `Situação: ${safeVal($('situacaoDoc'))}`,
+    `IPVA: ${safeVal($('ipva'))}`,
+    `Licenciamento: ${safeVal($('licenciamento'))}`,
+    `Multas: ${safeVal($('multas')) || 'Não informado'}`,
+    `Danos leves: ${safeVal($('leves')) || '0'}`,
+    `Danos profundos: ${safeVal($('profundos')) || '0'}`,
+    `Faróis/lanternas: ${safeVal($('farois')) || '0'}`,
+    `Retrovisores: ${safeVal($('retrovisores')) || '0'}`,
+    `Vidros: ${safeVal($('vidros')) || '0'}`,
+    `Painel/volante: ${safeVal($('painel'))}`,
+    `Teto e assoalho: ${safeVal($('teto'))}`,
+    `Bancos: ${safeVal($('bancos'))}`,
+    `Localização: ${[safeVal($('estado')), safeVal($('cidade')), safeVal($('bairro'))].filter(Boolean).join(' / ') || 'Não informada'}`,
+    `Objetivo com a venda: ${safeVal($('objetivoVenda')) || 'Não informado'}`,
+    `Veículo que procura: ${safeVal($('veiculoProcura')) || 'Não informado'}`,
+    '',
+    'Resumo da estimativa:',
+    `Preço base FIPE: ${lastEstimate ? fmtBRL(lastEstimate.basePrice) : 'Não calculado'}`,
+    `Faixa estimada: ${lastEstimate ? `${fmtBRL(lastEstimate.minRange)} — ${fmtBRL(lastEstimate.maxRange)}` : 'Não calculada'}`,
+    '',
+    'Estou à disposição e aguardo contato.'
+  ];
+  const text = encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/${WHATS_NUMBER}?text=${text}`, '_blank');
+}
+
+async function init() {
+  try {
+    await loadBrands();
+    setOptions($('marca'), uniqueNormalized(fipeState.brands.map(x => x.nome)));
+  } catch (error) {
+    console.error('Erro ao inicializar FIPE', error);
+    setOptions($('marca'), []);
+    showError('Não foi possível carregar a base FIPE agora. Abra o arquivo com internet e tente novamente.');
+  }
+  setOptions($('kmFaixa'), KM_RANGES);
+  setOptions($('cor'), COLORS);
+  wireEvents();
+  updateStepUI();
+}
+
+function runSelfTests() {
+  console.assert(Array.isArray(fipeState.brands), 'Estado FIPE inválido');
+  console.assert(KM_RANGES.length === 21, 'Faixas de km deveriam totalizar 21');
+  console.assert(COLORS.includes('Preto'), 'Cor Preto deveria existir');
+  console.assert(typeof WHATS_NUMBER === 'string' && WHATS_NUMBER.length >= 12, 'WhatsApp inválido');
+  console.assert(typeof obterFipeReal === 'function', 'Integração FIPE não carregada');
+  console.log('AUTO JUSTO self-tests: OK');
+}
+
+init();
+runSelfTests();
+</script>
+
+<script>
+(function() {
+  const originalCalculate = window.calculate;
+  if (typeof originalCalculate === 'function') {
+    window.calculate = function() {
+      const result = originalCalculate.apply(this, arguments);
+      const loc = document.getElementById('localizacaoFinal');
+      if (loc) loc.style.display = 'block';
+      const obj = document.getElementById('objetivoVendaWrap');
+      if (obj) obj.style.display = 'block';
+      return result;
+    }
+  }
+})();
+</script>
+
+
+<script>
+function formatarMoeda(campo) {
+  let valor = campo.value.replace(/\D/g, "");
+  if (valor === "") {
+    campo.value = "";
+    return;
+  }
+  valor = (parseInt(valor, 10) / 100).toFixed(2);
+  valor = valor.replace(".", ",");
+  valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  campo.value = valor;
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const select = document.getElementById('objetivoVenda');
+  const wrap = document.getElementById('veiculoProcuraWrap');
+  if (!select || !wrap) return;
+
+  function update() {
+    if (select.value === 'Trocar por outro veículo') {
+      wrap.style.display = 'block';
+    } else {
+      wrap.style.display = 'none';
+    }
+  }
+
+  select.addEventListener('change', update);
+  update();
+});
+</script>
+
+<script>
+/* === PATCH DEFINITIVO: MENSAGEM COMPLETA + OPCIONAIS (SEM ALTERAR CÁLCULO/LAYOUT) === */
+(function(){
+  function safeVal(id){ return (document.getElementById(id)?.value || '').trim(); }
+  function fmtBRL(v){
+    try { return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v); }
+    catch(e){ return v; }
+  }
+
+  window.openWhatsApp = function(){
+    const WHATS_NUMBER = "5511958377876";
+
+    // Coletar opcionais marcados (apenas os checkboxes visíveis na seção)
+    const selecionados = Array.from(document.querySelectorAll('.pill-row input[type="checkbox"]:checked'))
+      .map(cb => cb.parentElement.textContent.trim())
+      .filter(Boolean);
+
+    const opcionaisBloco = selecionados.length
+      ? ['Opcionais:', ...selecionados.map(t => '• ' + t)]
+      : ['Opcionais: Não informados'];
+
+    const lastEstimate = window.lastEstimate || null;
+
+    const linhas = [
+      'Olá, tudo bem? Vim através do site AUTO JUSTO e tenho interesse em conseguir um comprador para meu veículo pela faixa de preço informada. Também estou ciente que pode haver alterações após análise mais detalhada e presencial.',
+      '',
+      'Segue dados do veículo:',
+      `Marca: ${safeVal('marca')}`,
+      `Modelo: ${safeVal('modelo')}`,
+      `Ano fabricação: ${safeVal('anoFab')}`,
+      `Ano modelo: ${safeVal('anoModelo')}`,
+      `Quilometragem: ${safeVal('kmFaixa')}`,
+      `Cor: ${safeVal('cor')}`,
+      `Pneus: ${safeVal('pneus')}`,
+      `Estepe: ${safeVal('estepe')}`,
+      `Motor: ${safeVal('motor')}`,
+      `Condição do câmbio: ${safeVal('cambioCond')}`,
+      `Suspensão: ${safeVal('suspensao')}`,
+      `Sinistro: ${safeVal('sinistro')}`,
+      `Leilão: ${safeVal('leilao')}`,
+      `Situação: ${safeVal('situacaoDoc')}`,
+      `IPVA: ${safeVal('ipva')}`,
+      `Licenciamento: ${safeVal('licenciamento')}`,
+      `Multas: ${safeVal('multas') || 'Não informado'}`,
+      `Danos leves: ${safeVal('leves') || '0'}`,
+      `Danos profundos: ${safeVal('profundos') || '0'}`,
+      `Faróis/lanternas: ${safeVal('farois') || '0'}`,
+      `Retrovisores: ${safeVal('retrovisores') || '0'}`,
+      `Vidros: ${safeVal('vidros') || '0'}`,
+      `Painel/volante: ${safeVal('painel')}`,
+      `Teto e assoalho: ${safeVal('teto')}`,
+      `Bancos: ${safeVal('bancos')}`,
+      `Localização: ${[safeVal('estado'), safeVal('cidade'), safeVal('bairro')].filter(Boolean).join(' / ') || 'Não informada'}`,
+      `Objetivo com a venda: ${safeVal('objetivoVenda') || 'Não informado'}`,
+      `Veículo que procura: ${safeVal('veiculoProcura') || 'Não informado'}`,
+      '',
+      ...opcionaisBloco,
+      '',
+      'Resumo da estimativa:',
+      `Preço base FIPE: ${lastEstimate ? fmtBRL(lastEstimate.basePrice) : 'Não calculado'}`,
+      `Faixa estimada: ${lastEstimate ? fmtBRL(lastEstimate.minRange) + ' — ' + fmtBRL(lastEstimate.maxRange) : 'Não calculada'}`,
+      '',
+      'Estou à disposição e aguardo contato.'
+    ];
+
+    const text = encodeURIComponent(linhas.join('\n'));
+    window.open(`https://wa.me/${WHATS_NUMBER}?text=${text}`, '_blank');
+  };
+})();
+</script>
+
+
+<script>
+/* === PATCH FINAL: FIPE GARANTIDA VIA DOM + MENSAGEM COMPLETA === */
+(function(){
+  function safeVal(id){ return (document.getElementById(id)?.value || '').trim(); }
+
+  function obterFaixaTela(){
+    const el = document.getElementById('resultRange');
+    return el ? el.textContent.trim() : 'Não calculada';
+  }
+
+  function obterFipeTela(){
+    const items = document.querySelectorAll('.summary-item');
+    for(const item of items){
+      if(item.textContent.includes('Preço Médio Praticado')){
+        const strong = item.querySelector('strong');
+        if(strong) return strong.textContent.trim();
+      }
+    }
+    return 'Não calculado';
+  }
+
+  window.openWhatsApp = function(){
+    const WHATS_NUMBER = "5511958377876";
+
+    const selecionados = Array.from(document.querySelectorAll('.pill-row input[type="checkbox"]:checked'))
+      .map(cb => cb.parentElement.textContent.trim())
+      .filter(Boolean);
+
+    const opcionaisBloco = selecionados.length
+      ? ['Opcionais:', ...selecionados.map(t => '• ' + t)]
+      : ['Opcionais: Não informados'];
+
+    const faixa = obterFaixaTela();
+    const fipe = obterFipeTela();
+
+    const linhas = [
+      'Olá, tudo bem? Vim através do site AUTO JUSTO e tenho interesse em conseguir um comprador para meu veículo pela faixa de preço informada. Também estou ciente que pode haver alterações após análise mais detalhada e presencial.',
+      '',
+      'Segue dados do veículo:',
+      `Marca: ${safeVal('marca')}`,
+      `Modelo: ${safeVal('modelo')}`,
+      `Ano fabricação: ${safeVal('anoFab')}`,
+      `Ano modelo: ${safeVal('anoModelo')}`,
+      `Quilometragem: ${safeVal('kmFaixa')}`,
+      `Cor: ${safeVal('cor')}`,
+      `Pneus: ${safeVal('pneus')}`,
+      `Estepe: ${safeVal('estepe')}`,
+      `Motor: ${safeVal('motor')}`,
+      `Condição do câmbio: ${safeVal('cambioCond')}`,
+      `Suspensão: ${safeVal('suspensao')}`,
+      `Sinistro: ${safeVal('sinistro')}`,
+      `Leilão: ${safeVal('leilao')}`,
+      `Situação: ${safeVal('situacaoDoc')}`,
+      `IPVA: ${safeVal('ipva')}`,
+      `Licenciamento: ${safeVal('licenciamento')}`,
+      `Multas: ${safeVal('multas') || 'Não informado'}`,
+      `Danos leves: ${safeVal('leves') || '0'}`,
+      `Danos profundos: ${safeVal('profundos') || '0'}`,
+      `Faróis/lanternas: ${safeVal('farois') || '0'}`,
+      `Retrovisores: ${safeVal('retrovisores') || '0'}`,
+      `Vidros: ${safeVal('vidros') || '0'}`,
+      `Painel/volante: ${safeVal('painel')}`,
+      `Teto e assoalho: ${safeVal('teto')}`,
+      `Bancos: ${safeVal('bancos')}`,
+      `Localização: ${[safeVal('estado'), safeVal('cidade'), safeVal('bairro')].filter(Boolean).join(' / ') || 'Não informada'}`,
+      `Objetivo com a venda: ${safeVal('objetivoVenda') || 'Não informado'}`,
+      `Veículo que procura: ${safeVal('veiculoProcura') || 'Não informado'}`,
+      '',
+      ...opcionaisBloco,
+      '',
+      'Resumo da estimativa:',
+      `Preço base FIPE: ${fipe}`,
+      `Faixa estimada: ${faixa}`,
+      '',
+      'Estou à disposição e aguardo contato.'
+    ];
+
+    const text = encodeURIComponent(linhas.join('\n'));
+    window.open(`https://wa.me/${WHATS_NUMBER}?text=${text}`, '_blank');
+  };
+})();
+</script>
+
+
+<script>
+/* === PATCH FINAL CORRIGIDO — MENSAGEM COMPLETA FIEL À TELA === */
+(function(){
+
+  function safeVal(id){ return (document.getElementById(id)?.value || '').trim(); }
+
+  function obterFaixaTela(){
+    const el = document.getElementById('resultRange');
+    return el ? el.textContent.trim() : 'Não calculada';
+  }
+
+  function obterFipeTela(){
+    const items = document.querySelectorAll('.summary-item');
+    for(const item of items){
+      if(item.textContent.includes('Preço Médio')){
+        const strong = item.querySelector('strong');
+        if(strong) return strong.textContent.trim();
+      }
+    }
+    return 'Não calculado';
+  }
+
+  function kmRepresentativo(faixa){
+    const nums = (faixa.match(/\d[\d\.\,]*/g) || [])
+      .map(n => parseInt(n.replace(/\D/g,''),10))
+      .filter(Boolean);
+    if(nums.length >= 2){
+      return Math.round((nums[0] + nums[1]) / 2).toLocaleString('pt-BR') + ' km';
+    }
+    return 'Não informado';
+  }
+
+  window.openWhatsApp = function(){
+
+    const WHATS_NUMBER = "5511958377876";
+
+    const situacao = safeVal('situacaoDoc');
+    const parcelas = safeVal('parcelasInfo');
+
+    const parcelasBloco =
+      situacao === 'Financiado / Alienado' && parcelas
+        ? [`Parcelas do financiamento: ${parcelas}`]
+        : [];
+
+    const kmFaixa = safeVal('kmFaixa');
+    const kmRep = kmRepresentativo(kmFaixa);
+
+    const selecionados = Array.from(
+      document.querySelectorAll('.pill-row input[type="checkbox"]:checked')
+    ).map(cb => cb.parentElement.textContent.trim()).filter(Boolean);
+
+    const opcionaisBloco = selecionados.length
+      ? ['Opcionais:', ...selecionados.map(t => '• ' + t)]
+      : ['Opcionais: Não informados'];
+
+    const faixa = obterFaixaTela();
+    const fipe = obterFipeTela();
+
+    const linhas = [
+      'Olá, tudo bem? Vim através do site AUTO JUSTO e tenho interesse em conseguir um comprador para meu veículo pela faixa de preço informada. Também estou ciente que pode haver alterações após análise mais detalhada e presencial.',
+      '',
+      'Segue dados do veículo:',
+      `Marca: ${safeVal('marca')}`,
+      `Modelo: ${safeVal('modelo')}`,
+      `Ano fabricação: ${safeVal('anoFab')}`,
+      `Ano modelo: ${safeVal('anoModelo')}`,
+      `Quilometragem: ${kmFaixa}`,
+      `KM aproximado: ${kmRep}`,
+      `Cor: ${safeVal('cor')}`,
+      `Pneus: ${safeVal('pneus')}`,
+      `Estepe: ${safeVal('estepe')}`,
+      `Motor: ${safeVal('motor')}`,
+      `Condição do câmbio: ${safeVal('cambioCond')}`,
+      `Suspensão: ${safeVal('suspensao')}`,
+      `Ar-condicionado: ${safeVal('arCond')}`,
+      `Sinistro: ${safeVal('sinistro')}`,
+      `Leilão: ${safeVal('leilao')}`,
+      `Situação: ${situacao}`,
+      ...parcelasBloco,
+      `IPVA: ${safeVal('ipva')}`,
+      `Licenciamento: ${safeVal('licenciamento')}`,
+      `Multas: ${safeVal('multas') || 'Não informado'}`,
+      `Danos leves: ${safeVal('leves') || '0'}`,
+      `Danos profundos: ${safeVal('profundos') || '0'}`,
+      `Faróis/lanternas: ${safeVal('farois') || '0'}`,
+      `Retrovisores: ${safeVal('retrovisores') || '0'}`,
+      `Vidros: ${safeVal('vidros') || '0'}`,
+      `Painel/volante: ${safeVal('painel')}`,
+      `Teto e assoalho: ${safeVal('teto')}`,
+      `Bancos: ${safeVal('bancos')}`,
+      `Localização: ${[safeVal('estado'), safeVal('cidade'), safeVal('bairro')].filter(Boolean).join(' / ') || 'Não informada'}`,
+      `Objetivo com a venda: ${safeVal('objetivoVenda') || 'Não informado'}`,
+      `Veículo que procura: ${safeVal('veiculoProcura') || 'Não informado'}`,
+      '',
+      ...opcionaisBloco,
+      '',
+      'Resumo da estimativa:',
+      `Preço base FIPE: ${fipe}`,
+      `Faixa estimada: ${faixa}`,
+      '',
+      'Estou à disposição e aguardo contato.'
+    ];
+
+    const text = encodeURIComponent(linhas.join('\n'));
+    window.open(`https://wa.me/${WHATS_NUMBER}?text=${text}`, '_blank');
+  };
+
+})();
+</script>
+
+
+<script>
+(function(){
+  function toggleParcelas(){
+    var sel = document.getElementById('situacaoDoc');
+    var wrap = document.getElementById('parcelasInfoWrap');
+    var inp  = document.getElementById('parcelasInfo');
+    if(!sel || !wrap) return;
+
+    if(sel.value === 'Financiado / Alienado'){
+      wrap.style.display = 'block';
+    } else {
+      wrap.style.display = 'none';
+      if(inp) inp.value = '';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var sel = document.getElementById('situacaoDoc');
+    if(sel){
+      sel.addEventListener('change', toggleParcelas);
+      toggleParcelas(); // initial state
+    }
+  });
+
+  // Also handle when returning to the tab/app
+  window.addEventListener('focus', toggleParcelas);
+})();
+</script>
+
+
+<!-- AUTO JUSTO — PROTEÇÃO AVANÇADA -->
+<script>
+/* Bloquear clique direito */
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+/* Bloquear seleção */
+document.addEventListener('selectstart', e => e.preventDefault());
+
+/* Bloquear teclas comuns de inspeção */
+document.addEventListener('keydown', function(e) {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key.toUpperCase())) ||
+    (e.ctrlKey && e.key.toUpperCase() === "U") ||
+    (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === "K")
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+/* Detectar DevTools aberto */
+(function() {
+  let threshold = 160;
+  setInterval(function() {
+    if (
+      window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold
+    ) {
+      document.body.innerHTML =
+        "<div style='display:flex;align-items:center;justify-content:center;height:100vh;background:#0b1020;color:white;font-family:sans-serif;text-align:center;padding:20px'>" +
+        "<div><h2>Conteúdo protegido</h2>" +
+        "<p>O acesso ao código desta aplicação é restrito.</p></div></div>";
+    }
+  }, 1000);
+})();
+
+/* Desabilitar cópia */
+document.addEventListener('copy', e => e.preventDefault());
+
+/* Marca invisível */
+console.log("%cAUTO JUSTO — Sistema proprietário", "color:#4ade80;font-weight:bold");
+console.log("Reprodução não autorizada.");
+
+/* Desativar arrastar imagens/texto */
+document.addEventListener('dragstart', e => e.preventDefault());
+</script>
+
+</body>
+
+</html>
