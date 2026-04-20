@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://autojusto.github.io/sitemap.xml
